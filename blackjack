@@ -1,0 +1,57 @@
+import random
+cards = [11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10]
+
+user_cards = random.choices(cards, k=2)
+computer_cards = random.choices(cards, k=2)
+print(f"Your cards are {user_cards}.")
+
+user_points = sum(user_cards)
+computer_points = sum(computer_cards)
+
+
+if user_points == 21 and computer_points != 21:
+        print(f"Computer's cards are {computer_cards}.")
+        print("You win.")
+        quit()
+elif computer_points == 21 and user_points != 21:
+        print(f"Computer's cards are {computer_cards}.")
+        print("You lose.")
+        quit()
+elif user_points > 21:
+   if 11 in user_cards:
+        user_points -= 10
+        print(f"Your score is {user_points}.")
+
+want_another_card = True
+
+while want_another_card == True:
+    another = input("Do you want another card? y or n ")
+    if another == "y":
+        another_user_card = random.choice(cards)
+        print(f"Your another card is {another_user_card}.")
+        user_points = user_points + another_user_card
+        print(f"Your score is currently {user_points}.")
+        if user_points > 21:
+            print("You lose.")
+            quit()
+    elif another == "n":
+        want_another_card == False
+        break
+
+while computer_points < 17:
+    another_computer_card = random.choice(cards)
+    print(f"Another computer's card is {another_computer_card}.")
+    computer_points = computer_points + another_computer_card
+
+print(f"Your score is {user_points}. Computer's score is {computer_points}.")
+if user_points > computer_points:
+    print("You win.")
+elif computer_points > user_points and computer_points < 22:
+    print("You lose.")
+elif computer_points > 21 and user_points > 21:
+    print("Both of you had futch")
+elif computer_points > 21 and user_points < 22:
+    print("You win.")
+elif computer_points == user_points:
+    print("It's a draw.")
+
